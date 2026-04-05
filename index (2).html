@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="design2.css"/>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">My Portfolio</div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero-section content-section active">
+    <div class="hero-content">
+      <h1>Hello, I'm Aliyah Jazzlyn Arbuyes</h1>
+      <p><span id="typed-text"></span><span id="cursor">|</span></p>
+      <a href="#projects" class="btn see-work-btn">See My Work</a>
+    </div>
+  </section>
+
+  <section id="about" class="content-section alt-bg">
+    <h2>About Me</h2>
+    <div class="about-container">
+      <img src="ali.jpg" alt="Profile" class="about-img"/>
+      <p>As a college Computer Engineering student, I am currently learning more about electronics and computer systems, focusing on understanding circuit fundamentals like resistors, capacitors, and transistors, while also developing my programming skills in languages such as C, C++, java, and Python; at the same time, I am exploring microcontrollers like Arduino and ESP32, studying computer architecture and digital logic, and building small projects that combine hardware and software to strengthen my practical knowledge and technical skills in the field of technology.</p>
+    </div>
+  </section>
+
+  <section id="skills" class="content-section">
+    <h2>My Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <label><abbr title="HyperText Markup Language">HTML</abbr></label>
+        <div class="skill-bar"><div class="fill" style="width: 37%;"></div></div>
+      </div>
+      <div class="skill-card">
+        <label><abbr title="Java Programming Language">JAVA</abbr></label>
+        <div class="skill-bar"><div class="fill" style="width: 20%;"></div></div>
+      </div>
+      <div class="skill-card">
+        <label><abbr title="Cascading Style Sheets">CSS</abbr></label>
+        <div class="skill-bar"><div class="fill" style="width: 15%;"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="content-section alt-bg">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+
+      <div class="project-card">
+        <div class="project-summary" onclick="toggleDropdown(this)">
+          <img src="sumobot.jpg" alt="Sumobot" class="project-thumb"/>
+          <div class="project-info">
+            <h3>MINKSZZ Sumobot</h3>
+          </div>
+          <span class="dropdown-arrow">&#9660;</span>
+        </div>
+        <div class="project-dropdown">
+          <video controls style="width:30%;border-radius:10px; margin-right:10px;">
+            <source src="https://i.imgur.com/aZplt80.mp4" type="video/mp4"/>
+            </video>
+            <video controls style="width:30%;border-radius:10px; margin-left:30px;">
+              <source src="https://i.imgur.com/CMYyEos.mp4" type="video/mp4" />
+            </video>
+            <video controls style="width:30%;border-radius:10px; margin-left: 50px;">
+              <source src="https://i.imgur.com/C2a1ebW.mp4" type="video/mp4"/>
+            </video>
+        </div>
+        <p style="margin-top:12px;color:#555; text-align: center;">Our First robot together with Saira Jane Sayson and Dria Mae Perocho</p>
+      </div>
+      
+      <div class="project-card">
+        <div class="project-summary" onclick="toggleDropdown(this)">
+          <img src="Garbot.jpg" alt="Sumobot" class="project-thumb"/>
+          <div class="project-info">
+            <h3>Garbot Trash Collector</h3>
+          </div>
+          <span class="dropdown-arrow">&#9660;</span>
+        </div>
+        <div class="project-dropdown">
+            <img src="display.jpg" type="video/mp4 " style ="width: 45%;"/>
+            <video controls style="width:50%;border-radius:10px; margin-left:30px;">
+              <source src="https://i.imgur.com/pDULji2.mp4" type="video/mp4" />
+            </video>
+        </div>
+        <p style="margin-top:12px;color:#555; text-align: center;">Our Trash Collector robot together with Joseph Cantila and Christian Gabriel Ampong Besas</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="content-section">
+    <h2>Contact Me</h2>
+    <p><strong>Email:</strong> arbuyesaliyah@gmail.com</p>
+    <p><strong>Phone:</strong> 09186214585</p>
+    <p><strong>Location:</strong> Philippines</p>
+    <form class="contact-form" action="mailto:arbuyesaliyah@gmail.com" method="POST" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your Name" required/>
+      <input type="email" name="email" placeholder="Your Email" required/>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Aliyah Jazzlyn Arbuyes. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const phrases = ["I'm a Computer Engineering Student.", "I love building cool stuff."];
+    let i=0, j=0, isDeleting=false, currentPhrase="";
+    const typedText = document.getElementById("typed-text");
+
+    function type() {
+      if (i >= phrases.length) i = 0;
+      currentPhrase = phrases[i];
+      if (!isDeleting && j <= currentPhrase.length) {
+        typedText.textContent = currentPhrase.slice(0, j++);
+        setTimeout(type, 100);
+      } else if (isDeleting && j >= 0) {
+        typedText.textContent = currentPhrase.slice(0, j--);
+        setTimeout(type, 50);
+      } else {
+        isDeleting = !isDeleting;
+        if (!isDeleting) i++;
+        setTimeout(type, 1000);
+      }
+    }
+    type();
+
+    const navLinks = document.querySelectorAll(".nav-links a");
+    const sections = document.querySelectorAll(".content-section");
+
+    navLinks.forEach(link => {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        sections.forEach(sec => sec.classList.remove("active"));
+        document.querySelector(this.getAttribute("href")).classList.add("active");
+      });
+    });
+
+    document.querySelector(".see-work-btn").addEventListener("click", function(e) {
+      e.preventDefault();
+      sections.forEach(sec => sec.classList.remove("active"));
+      document.querySelector("#projects").classList.add("active");
+      document.querySelector("#projects").scrollIntoView({ behavior: "smooth" });
+    });
+
+    function toggleDropdown(summary) {
+      const dropdown = summary.nextElementSibling;
+      const arrow = summary.querySelector(".dropdown-arrow");
+      const isOpen = dropdown.classList.contains("open");
+      dropdown.classList.toggle("open");
+      arrow.style.transform = isOpen ? "rotate(0deg)" : "rotate(180deg)";
+    }
+  </script>
+
+</body>
+</html>
